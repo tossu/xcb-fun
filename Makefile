@@ -1,7 +1,7 @@
 CFLAGS = -Wall -Wextra -pedantic
 LIBS = `pkg-config --cflags --libs xcb`
 
-.PHONY: draw stdin image main font
+.PHONY: draw stdin image main font 3d
 
 image:
 	gcc $(CFLAGS) -lxcb-icccm -lxcb -lxcb-image -lpng -o image image.c
@@ -29,6 +29,9 @@ pixmap:
 
 draw:
 	gcc $(CFLAGS) draw.c -o draw $(LIBS)
+
+3d:
+	gcc $(CFLAGS) 3d.c -lm -o 3d $(LIBS) -lm -pthread
 
 main:
 	gcc $(CFLAGS) main.c -o main $(LIBS)
